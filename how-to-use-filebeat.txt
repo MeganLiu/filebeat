@@ -2,3 +2,32 @@ What is Filebeat?
 Filebeat is a log shipper belonging to the Beats family — a group of lightweight shippers installed on hosts for shipping different kinds of data into the ELK Stack for analysis. Each beat is dedicated to shipping different types of information — Winlogbeat, for example, ships Windows event logs, Metricbeat ships host metrics, and so forth. Filebeat, as the name implies, ships log files.
 
 In an ELK-based logging pipeline, Filebeat plays the role of the logging agent — installed on the machine generating the log files, tailing them, and forwarding the data to either Logstash for more advanced processing or directly into Elasticsearch for indexing. Filebeat is, therefore, not a replacement for Logstash, but can and should in most cases, be used in tandem
+
+
+Installing Filebeat
+Filebeat can be downloaded and installed using various methods and on a variety of platforms. It only requires that you have a running ELK Stack to be able to ship the data collected by Filebeat. I will outline two methods, using Apt and Docker, but you can refer to the official docs for more options.
+
+Install Filebeat using Apt
+For an easier way of updating to a newer version, and depending on your Linux distro, you can use Apt or Yum to install Filebeat from Elastic’s repositories:
+
+First, you need to add Elastic’s signing key so that the downloaded package can be verified (skip this step if you’ve already installed packages from Elastic):
+
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+1
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+The next step is to add the repository definition to your system:
+
+
+echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo 
+tee -a /etc/apt/sources.list.d/elastic-6.x.list
+1
+2
+echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo 
+tee -a /etc/apt/sources.list.d/elastic-6.x.list
+All that’s left to do is to update your repositories and install Filebeat:
+
+
+sudo apt-get update && sudo apt-get install filebeat
+1
+sudo apt-get update && sudo apt-get install filebeat
