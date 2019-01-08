@@ -1,0 +1,4 @@
+What is Filebeat?
+Filebeat is a log shipper belonging to the Beats family — a group of lightweight shippers installed on hosts for shipping different kinds of data into the ELK Stack for analysis. Each beat is dedicated to shipping different types of information — Winlogbeat, for example, ships Windows event logs, Metricbeat ships host metrics, and so forth. Filebeat, as the name implies, ships log files.
+
+In an ELK-based logging pipeline, Filebeat plays the role of the logging agent — installed on the machine generating the log files, tailing them, and forwarding the data to either Logstash for more advanced processing or directly into Elasticsearch for indexing. Filebeat is, therefore, not a replacement for Logstash, but can and should in most cases, be used in tandem
