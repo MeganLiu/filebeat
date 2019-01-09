@@ -83,3 +83,8 @@ output.elasticsearch:
 output.elasticsearch:
   hosts: ["localhost:9200"]
 For forwarding logs to Logstash:
+
+1
+2
+output.logstash:
+  hosts: ["localhost:5044"]
