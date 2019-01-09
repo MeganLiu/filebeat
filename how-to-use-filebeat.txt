@@ -37,3 +37,5 @@ Configuring Filebeat
 Filebeat is pretty easy to configure, and the good news is that if you’ve configured one beat, you can be pretty sure you’ll know how to configure the next — they all follow the same configuration setup.
 
 Filebeat is configured using a YAML configuration file. On Linux, this file is located at: /etc/filebeat/filebeat.yml. On Docker, you will find it at: /usr/share/filebeat/filebeat.yml.
+
+
