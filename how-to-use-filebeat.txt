@@ -39,3 +39,47 @@ Filebeat is pretty easy to configure, and the good news is that if you’ve conf
 Filebeat is configured using a YAML configuration file. On Linux, this file is located at: /etc/filebeat/filebeat.yml. On Docker, you will find it at: /usr/share/filebeat/filebeat.yml.
 
 
+Filebeat prospectors
+The main configuration unit in Filebeat are the prospectors. Prospectors are responsible for locating specific files and applying basic processing to them.
+
+The main configuration applied to prospectors is the path (or paths) to the file you want to track, but you can use additional configuration options such as defining the input type and the encoding to use for reading the file, excluding and including specific lines, adding custom fields, and more.
+
+You can configure a prospector to track multiple files or define multiple prospectors in case you have prospector-specific configurations you want to apply.
+
+
+filebeat.prospectors:
+- type: log
+  paths:
+    - "/var/log/apache2/*"
+  fields:
+    apache: true
+1
+2
+3
+4
+5
+6
+filebeat.prospectors:
+- type: log
+  paths:
+
+Filebeat processors
+While not as powerful and robust as Logstash, Filebeat can apply basic processing and data enhancements to log data before forwarding it to the destination of your choice. You can decode JSON strings, drop specific fields, add various metadata (e.g. Docker, Kubernetes), and more
+
+Filebeat output
+This section in the Filebeat configuration file defines where you want to ship the data to. There are a wide range of supported output options, including console, file, cloud, Redis, Kafka but in most cases, you will be using the Logstash or Elasticsearch output types.
+
+Define a Logstash instance for more advanced processing and data enhancement. When your data is well-structured JSON documents, for example, you might make do with defining your Elasticsearch cluster.
+
+You can define multiple outputs and use a load balancing option to balance the forwarding of data.
+
+For forwarding logs to Elasticsearch:
+
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+1
+2
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+For forwarding logs to Logstash:
